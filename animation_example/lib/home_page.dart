@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-
+import 'dart:math' as math;
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -23,6 +23,10 @@ class _HomePageState extends State<HomePage>
       vsync: this,
       duration: const Duration(milliseconds: 900),
     );
+
+    controller.addListener(() {
+      print('controller value: ${controller.value}');
+    });
   }
 
   @override
@@ -64,9 +68,9 @@ class _HomePageState extends State<HomePage>
                             MaterialStateProperty.all(Colors.green)))),
             Positioned(
                 top: size.height * 0.48,
-                left: -15,
+                left: 0,
                 child: Transform.rotate(
-                  angle: 190.1,
+                  angle: math. pi / 2.0,
                   child: TextButton(
                       onPressed: () {},
                       child: const Text(
@@ -118,19 +122,22 @@ class _HomePageState extends State<HomePage>
                 child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        controller.repeat();
+                        // controller.repeat();
+                        // Optimize: 这里调用forward，controller会自动从当前值(eg.[controller.animateTo(target,..)达到的值])
+                        // Optimize: 开始动画到结束值（default:1.0）
+                        controller.forward();
                       });
-                      Future.delayed(Duration(seconds: 10), () {
-                        setState(() {
-                          target += 0.25;
-                          controller.animateTo(target,
-                              duration: Duration(seconds: 1));
-                          showResult(target);
-                          if (target == 1.00) {
-                            target = 0.0;
-                          }
-                        });
-                      });
+                      // Future.delayed(const Duration(seconds: 4), () {
+                      //   setState(() {
+                      //     target += 0.25;
+                      //     controller.animateTo(target,
+                      //         duration: const Duration(seconds: 1));
+                      //     showResult(target);
+                      //     if (target == 1.00) {
+                      //       target = 0.0;
+                      //     }
+                      //   });
+                      // });
                     },
                     child: Image.asset(
                       'assets/images/penimg2.png',
