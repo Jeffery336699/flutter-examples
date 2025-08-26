@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project/models/ListTileModel.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -22,7 +22,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new RaisedButton(
+            ElevatedButton(
               child: Text(
                 "Bottom Sheet",
                 style: TextStyle(fontSize: 20),
