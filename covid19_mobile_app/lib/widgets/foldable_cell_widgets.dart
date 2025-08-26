@@ -123,7 +123,7 @@ Widget buildInnerBottomWidget(String cases) {
               fontSize: 20.0,
             ),
           )),
-          FlatButton(
+          ElevatedButton(
             onPressed: () {
               SimpleFoldingCellState foldingCellState =
                   context.findAncestorStateOfType();

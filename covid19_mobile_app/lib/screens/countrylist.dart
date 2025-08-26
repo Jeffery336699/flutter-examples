@@ -10,7 +10,7 @@ import 'package:folding_cell/folding_cell.dart';
 class CountryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<dynamic> results;
+    List<dynamic> results=[];
     return Scaffold(
       drawer: DrawerWidget(),
       appBar: AppBar(
@@ -39,7 +39,7 @@ class CountryList extends StatelessWidget {
             return Center(
               child: Text("Error! please check you wifi connection"),
             );
-          results = jsonDecode(snapshot.data);
+          results = jsonDecode(snapshot.data.toString());
           return ListView.builder(
             physics: BouncingScrollPhysics(),
             itemCount: results.length,
