@@ -1,6 +1,5 @@
 import 'package:analytics_integration/single_item_tile.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +13,7 @@ void main() async {
 
 class FlutterAnalyticsApp extends StatelessWidget {
   /// create instance of FirebaseAnalytics as [analytics]
-  static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
   /// create observer for FirebaseAnalytics as [observer]
   /// this observer sends events to Firebase Analytics when the
@@ -50,10 +49,10 @@ class FlutterAnalyticsHome extends StatefulWidget {
   final FirebaseAnalyticsObserver observer;
 
   FlutterAnalyticsHome({
-    Key key,
-    this.title,
-    this.analytics,
-    this.observer,
+    Key? key,
+    required this.title,
+    required this.analytics,
+    required this.observer,
   }) : super(key: key);
 
   @override
@@ -61,7 +60,7 @@ class FlutterAnalyticsHome extends StatefulWidget {
 }
 
 class _FlutterAnalyticsHomeState extends State<FlutterAnalyticsHome> {
-  FirebaseAnalytics _analytics;
+  late FirebaseAnalytics _analytics;
 
   @override
   void initState() {
@@ -120,7 +119,7 @@ class _FlutterAnalyticsHomeState extends State<FlutterAnalyticsHome> {
   //// to create a unique user identifier for Analytics
   //// send user id(if you app has)
   Future<void> _setUserIdInAnalytics() async {
-    await _analytics.setUserId('alksj39hnfn49skvnghqwp40sm');
+    await _analytics.setUserId(id: 'alksj39hnfn49skvnghqwp40sm');
   }
 
   //// sending user related field to Analytics

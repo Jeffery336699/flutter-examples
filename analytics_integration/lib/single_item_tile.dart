@@ -8,10 +8,10 @@ class SingleItemTile extends StatefulWidget {
   final FirebaseAnalytics analytics;
 
   SingleItemTile({
-    this.itemName,
-    this.price,
-    this.quantity,
-    this.analytics,
+    required this.itemName,
+    required this.price,
+    required this.quantity,
+    required this.analytics,
   });
 
   @override
@@ -21,7 +21,7 @@ class SingleItemTile extends StatefulWidget {
 class _SingleItemTileState extends State<SingleItemTile> {
   /// [addedToCart] this variable is used to to justify that product is added in
   /// cart or not
-  bool addedToCart;
+  late bool addedToCart;
 
   @override
   void initState() {
